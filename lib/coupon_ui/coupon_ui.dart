@@ -40,12 +40,12 @@ class CoupenUI extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: FadeInImage.assetNetwork(
                   placeholder:
-                      'assets/placeholder.png', // Add a local placeholder
+                      'assets/images/set_logo.png', // Add a local placeholder
                   image: couponImage.isNotEmpty
                       ? couponImage
-                      : 'https://via.placeholder.com/100',
-                  height: 30,
-                  width: 30,
+                      : 'image not support',
+                  height: 40,
+                  width: 40,
                   imageErrorBuilder: (context, error, stackTrace) {
                     return Icon(Icons.image_not_supported,
                         size: 40, color: Colors.white);
@@ -54,10 +54,10 @@ class CoupenUI extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                '$couponDiscount% OFF',
+                '$couponDiscount₹ OFF',
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 26,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),

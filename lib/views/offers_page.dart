@@ -33,8 +33,8 @@ class OffersPage extends StatelessWidget {
               couponCode: coupon.couCode,
               couponDiscount: coupon.couValue,
               couponDescription: coupon.couTitle,
-              couponImage: coupon.couImg +
-                  ConstantData.SERVER_ADDRESS_IMAGE, // Ensure a valid string
+              couponImage: ConstantData.SERVER_ADDRESS_IMAGE +
+                  coupon.couImg, // Ensure a valid string
             );
           },
         );

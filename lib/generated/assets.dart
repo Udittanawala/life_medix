@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String imagesAboutUs = 'assets/images/about_us.json';
   static const String imagesAcBackground = 'assets/images/ac_background.jpg';
   static const String imagesAcBackground1 = 'assets/images/ac_background1.jpg';
   static const String imagesAnimation = 'assets/images/animation.json';

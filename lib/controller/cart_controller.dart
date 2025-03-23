@@ -9,11 +9,15 @@ import 'package:life_medix_demo/model/apply_coupon_model.dart';
 import 'package:life_medix_demo/model/cart_model.dart';
 import 'package:life_medix_demo/model/coupon_model.dart';
 import 'package:life_medix_demo/model/product_model.dart';
+import 'package:life_medix_demo/views/home_page.dart';
+import 'package:life_medix_demo/views/home_screen.dart';
 import '../generated/const_data.dart';
 
 class CartController extends GetxController {
   PrefManager manager = PrefManager();
   CartModel? model;
+
+  String pay_type = "COD";
 
   final focusNode = FocusNode();
   bool isApply = false;
@@ -181,20 +185,56 @@ class CartController extends GetxController {
     }
   }
 
-  // void calculateFinalAmount() {
-  //   double deliveryFee = 199.0;
-  //   double gst = 38.0;
-  //   double handlingFee = 3.0;
-  //   finalAmount.value =
-  //       amount.value + deliveryFee + gst + handlingFee - couponDiscount.value;
-  // }
+  Future<void> confirmOrder() async {
+    try {
+      final url = Uri.parse(ConstantData.CONFIRM_ORDER_API);
+      var response = await http.post(
+        url,
+        body: {
+          'payment_type': pay_type,
+          'address': 'SURAT',
+          'uid': manager.getUserId(),
+        },
+      );
+      if (response.statusCode == 200) {
+        Get.offAll(() => HomeScreen());
+      }
+    } catch (e) {
+      log(e.toString(), name: "CONFIRM ORDER ERROR");
+    }
+  }
 
-  // void applyCoupon() {
-  //   // Here you would typically validate the coupon code and set the discount
-  //   // For demonstration, let's assume a fixed discount of ₹50 for any coupon
-  //   couponDiscount.value = 50; // Set the discount amount
-  //   calculateFinalAmount(); // Recalculate the final amount
-  //   Get.snackbar("Coupon Applied",
-  //       "You have received a discount of ₹${couponDiscount.value}");
-  // }
+  Future<void> OrderHistory() async {
+    try {
+      final url = Uri.parse(ConstantData.ORDER_HISTORY_API);
+      var response = await http.post(
+        url,
+        body: {
+          'uid': manager.getUserId(),
+        },
+      );
+      if (response.statusCode == 200) {
+        // Get.offAll(() => HomePage());
+      }
+    } catch (e) {
+      log(e.toString(), name: "ORDER HISTORY....");
+    }
+  }
 }
+
+// void calculateFinalAmount() {
+//   double deliveryFee = 199.0;
+//   double gst = 38.0;
+//   double handlingFee = 3.0;
+//   finalAmount.value =
+//       amount.value + deliveryFee + gst + handlingFee - couponDiscount.value;
+// }
+
+// void applyCoupon() {
+//   // Here you would typically validate the coupon code and set the discount
+//   // For demonstration, let's assume a fixed discount of ₹50 for any coupon
+//   couponDiscount.value = 50; // Set the discount amount
+//   calculateFinalAmount(); // Recalculate the final amount
+//   Get.snackbar("Coupon Applied",
+//       "You have received a discount of ₹${couponDiscount.value}");
+// }

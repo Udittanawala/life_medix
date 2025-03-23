@@ -16,6 +16,7 @@ analyzer:
     unused_field: ignore
     non_constant_identifier_names: ignore
     prefer_interpolation_to_compose_strings: ignore
+    sized_box_for_whitespace: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:

@@ -3,6 +3,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:life_medix_demo/generated/pref_manager.dart';
 import 'package:life_medix_demo/views/cart_screen.dart';
+import 'package:life_medix_demo/views/demo.dart';
 import 'package:life_medix_demo/views/home_screen.dart';
 import 'package:life_medix_demo/views/splash_screen.dart';
 

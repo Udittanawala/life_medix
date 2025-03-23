@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:life_medix_demo/controller/editprofile_controller.dart';
 import 'package:life_medix_demo/generated/pref_manager.dart';
+import 'package:life_medix_demo/views/about_us.dart';
 import 'package:life_medix_demo/views/edit_profile_screen.dart';
 import 'package:life_medix_demo/views/legal_page.dart';
+import 'package:life_medix_demo/views/your_order_screen.dart';
 
 class AccountPage extends StatefulWidget {
   @override
@@ -14,7 +16,6 @@ class AccountPage extends StatefulWidget {
 
 class _AccountPageState extends State<AccountPage> {
   File? _selectedImage;
-  final EditProfileController _controller = Get.put(EditProfileController());
   bool isFAQExpanded = false;
 
   final List<Map<String, String>> faqData = [
@@ -70,7 +71,7 @@ class _AccountPageState extends State<AccountPage> {
         child: ListView(
           children: [
             SizedBox(height: 20),
-            _buildProfileSection(),
+            // _buildProfileSection(),
             SizedBox(height: 25),
             _buildAccountOptions(),
           ],
@@ -79,47 +80,42 @@ class _AccountPageState extends State<AccountPage> {
     );
   }
 
-  Widget _buildProfileSection() {
-    return Column(
-      children: [
-        Stack(
-          alignment: Alignment.bottomRight,
-          children: [
-            CircleAvatar(
-              radius: 60,
-              backgroundColor: Colors.grey[300],
-              backgroundImage: _selectedImage != null
-                  ? FileImage(_selectedImage!)
-                  : AssetImage("assets/images/default_avatar.png")
-                      as ImageProvider,
-            ),
-            GestureDetector(
-              onTap: _pickImageFromGallery,
-              child: CircleAvatar(
-                radius: 18,
-                backgroundColor: Colors.white,
-                child: Icon(Icons.camera_alt, color: Colors.cyan.shade700),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 15),
-        Text("Welcome, Username",
-            style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.cyan.shade600)),
-      ],
-    );
-  }
+  // Widget _buildProfileSection() {
+  //   return Column(
+  //     children: [
+  //       Stack(
+  //         alignment: Alignment.bottomRight,
+  //         children: [
+  //           CircleAvatar(
+  //             radius: 60,
+  //             backgroundColor: Colors.grey[300],
+  //             backgroundImage: _selectedImage != null
+  //                 ? FileImage(_selectedImage!)
+  //                 : AssetImage("assets/images/default_avatar.png")
+  //                     as ImageProvider,
+  //           ),
+  //           GestureDetector(
+  //             onTap: _pickImageFromGallery,
+  //             child: CircleAvatar(
+  //               radius: 18,
+  //               backgroundColor: Colors.white,
+  //               child: Icon(Icons.camera_alt, color: Colors.cyan.shade700),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //       SizedBox(height: 15),
+  //     ],
+  //   );
+  // }
 
   Widget _buildAccountOptions() {
     return Column(
       children: [
         buildOptionCard("Edit Profile", Icons.edit, isEditProfile: true),
-        buildOptionCard("Your Order", Icons.shopping_cart),
+        buildOptionCard("Your Order", Icons.shopping_cart, isYourOrder: true),
         buildOptionCard("Saved Letter", Icons.bookmark),
-        buildOptionCard("About Us", Icons.info),
+        buildOptionCard("About Us", Icons.info, isAboutUs: true),
         buildOptionCard("Need Help", Icons.help),
         buildOptionCard("FAQ", Icons.question_answer, isFAQ: true),
         if (isFAQExpanded) _buildFAQSection(),
@@ -131,18 +127,24 @@ class _AccountPageState extends State<AccountPage> {
 
   Widget buildOptionCard(String title, IconData icon,
       {bool isEditProfile = false,
+      bool isYourOrder = false,
       bool isLogout = false,
       bool isLegal = false,
+      bool isAboutUs = false,
       bool isFAQ = false}) {
     return GestureDetector(
       onTap: () {
         if (isEditProfile) {
-          Get.to(() => EditProfile());
+          Get.to(() => EditProfileScreen());
         } else if (isLogout) {
           PrefManager manager = PrefManager();
           manager.logoutUser();
         } else if (isLegal) {
           Get.to(() => LegalPage());
+        } else if (isYourOrder) {
+          Get.to(() => OrderHistory());
+        } else if (isAboutUs) {
+          Get.to(() => AboutUsScreen());
         } else if (isFAQ) {
           setState(() {
             isFAQExpanded = !isFAQExpanded;

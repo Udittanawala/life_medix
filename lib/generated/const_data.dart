@@ -8,7 +8,7 @@ class ConstantData {
 
   //server address
   static final String SERVER_ADDRESS = SERVER_ADDRESS_IMAGE + "api/";
-  static final String SERVER_ADDRESS_IMAGE = "http://192.168.1.7/MAIN_PROJECT/";
+  static final String SERVER_ADDRESS_IMAGE = "http://192.168.1.8/MAIN_PROJECT/";
 
   //API Address
   static final String REGISTER_USER_API = "register_user.php";
@@ -27,8 +27,11 @@ class ConstantData {
   static final String GETOERDER_API = SERVER_ADDRESS + "getorder_api.php";
   static final String UPDATEOERDER_API = SERVER_ADDRESS + "updateqtyapi.php";
   static final String REMOVEOERDER_API = SERVER_ADDRESS + "removeorder_api.php";
-  static final String EDITPROFILE_API = SERVER_ADDRESS + "editprofile_api.php";
+  static final String EDITPROFILE_API = SERVER_ADDRESS + "edit_profile_api.php";
   static final String TOP_SELLING = SERVER_ADDRESS + "topselling_api.php";
   static final String SEARCH_API = SERVER_ADDRESS + "searchapi.php";
   static final String APPLY_COUPON_API = SERVER_ADDRESS + "getDiscountApi.php";
+  static final String ORDER_HISTORY_API = SERVER_ADDRESS + "orderhistory.php";
+  static final String CONFIRM_ORDER_API =
+      SERVER_ADDRESS + "confirm_order_api.php";
 }

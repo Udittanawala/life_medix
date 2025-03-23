@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   final productController =
       Get.put(ProductController()); // Instantiate ProductController
   String username = "";
+  final String phoneNumber = "9510809239";
 
   @override
   void initState() {
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(10),
                               child: Image.asset(
                                 "assets/images/book_medicine.jpg",
-                                height: 80,
+                                height: 85,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -135,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(10),
                               child: Image.asset(
                                 'assets/images/book_labtest.jpg',
-                                height: 100,
+                                height: 85,
                               ),
                             ),
                           ),
@@ -261,8 +262,11 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.network(ConstantData.SERVER_ADDRESS_IMAGE +
-                                category.catImg),
+                            Image.network(
+                              ConstantData.SERVER_ADDRESS_IMAGE +
+                                  category.catImg,
+                              height: 80,
+                            ),
                             Text(category.catName),
                           ],
                         ),
